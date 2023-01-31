@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/member.css}">
+</head>
+<body>
+    <div id="wrap">
+        <div class="memberBox">
+            <header>
+                <h2>회원가입</h2>
+                <a href="/member/"><img src="/images/home.png" alt="집아이콘"></a>
+            </header>
+            <form action="/member/save" method="post">
+                <input type="text" name="memberEmail" id="memberEmail" onblur="emailCheck()" placeholder="이메일">
+                <p id="check-result"></p>
+                <input type="password" name="memberPassword" placeholder="비밀번호">
+                <input type="text" name="memberName" placeholder="이름">
+                <input type="submit" value="회원가입" class="joinBtn">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<script th:inline="javascript">
+    const emailCheck = () => {
+        const email = document.getElementById("memberEmail").value;
+        const checkResult = document.getElementById("check-result");
+        console.log("입력값: ", email);
+        $.ajax({
+            type: "post",
+            url: "/member/email-check",
+            data: {
+                "memberEmail": email
+            },
+            success : function(res) {
+                console.log("요청성공",res);
+                if (res == "ok") {
+                    checkResult.style.color = "blue";
+                    checkResult.innerHTML = "사용가능한 이메일입니다.";
+
+                } else {
+                    checkResult.style.color = "red";
+                    checkResult.innerHTML = "이미사용중인 이메일입니다.";
+                }
+            },
+            error: function(err) {
+                console.log("에러발생",err);
+            }
+        });
+    }
+</script>

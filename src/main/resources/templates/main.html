@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/member.css}">
+</head>
+<body>
+<div id="wrap">
+    <div class="memberBox">
+        <header>
+            <h2>마이페이지</h2>
+            <a href="/member/"><img src="/images/home.png" alt="집아이콘"></a>
+        </header>
+        <div class="myPageForm">
+            <p th:text="${session.loginEmail}"></p>
+            <div class="flexBox">
+                <a href="/member/update" class="btn">수정하기</a>
+                <a href="/member/logout" class="btn">로그아웃</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

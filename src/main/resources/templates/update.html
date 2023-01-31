@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보수정</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/member.css}">
+</head>
+<body>
+<div id="wrap">
+    <div class="memberBox">
+        <header>
+            <h2>회원정보 수정</h2>
+            <a href="/member/"><img src="/images/home.png" alt="집아이콘"></a>
+        </header>
+        <form action="/member/update" method="post">
+            <input type="hidden" th:value="${updateMember.id}" name="id"> <br>
+            <h3>이메일</h3>
+            <input type="text" th:value="${updateMember.memberEmail}" name="memberEmail" readonly class="fixed"> <br>
+            <h3>비밀번호</h3>
+            <input type="text" th:value="${updateMember.memberPassword}" name="memberPassword"> <br>
+            <h3>이름</h3>
+            <input type="text" th:value="${updateMember.memberName}" name="memberName"> <br>
+            <input type="submit" value="정보수정" class="editBtn">
+        </form>
+    </div>
+</div>
+</body>
+</html>
